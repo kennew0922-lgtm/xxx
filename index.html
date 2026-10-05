@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Socrarius Memory Archive</title>
+    <style>
+        body {
+            background: rgba(0, 5, 15, 0.9);
+            color: #e0f7ff;
+            font-family: 'Consolas', monospace;
+            margin: 0;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        /* 🌸 上部固定バナー */
+        .system-banner {
+            position: fixed;
+            top: 0; left: 0; width: 100%;
+            height: 40px;
+            background: rgba(0, 105, 217, 0.3);
+            border-bottom: 1px solid #00f2fe;
+            display: flex;
+            align-items: center;
+            padding-left: 20px;
+            font-size: 14px;
+            letter-spacing: 2px;
+            z-index: 100;
+            backdrop-filter: blur(5px);
+        }
+
+        /* 🌸 セクションタイトル */
+        .section-title {
+            background: #000;
+            color: #00f2fe;
+            padding: 8px 15px;
+            margin: 40px 0 15px 0;
+            font-size: 11px;
+            font-weight: bold;
+            border-left: 4px solid #00f2fe;
+            letter-spacing: 2px;
+            box-shadow: inset 0 0 10px rgba(0, 242, 254, 0.2);
+        }
+
+        /* 🌸 アルバムグリッド（従来サイズ） */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 60px;
+        }
+
+        /* 🌸 ランチャーグリッド（ミニマルサイズ） */
+        .launcher-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+            gap: 12px;
+            margin-bottom: 40px;
+        }
+
+        /* 🌸 カード共通設定（aタグ自身が箱になるように修正） */
+        .memory-card {
+            border: 1px solid rgba(0, 242, 254, 0.3);
+            background: rgba(255, 255, 255, 0.05);
+            padding: 10px;
+            transition: 0.3s;
+            display: block;      /* 💡これでaタグが綺麗な四角い箱になります */
+            text-decoration: none;
+            box-sizing: border-box;
+        }
+
+        /* ランチャー用カードの調整 */
+        .launcher-card {
+            padding: 5px;
+            aspect-ratio: 1 / 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 6px;
+        }
+
+        .memory-card:hover {
+            border-color: #00f2fe;
+            box-shadow: 0 0 15px rgba(0, 242, 254, 0.4);
+            transform: scale(1.1); /* アルバムは少しだけ */
+        }
+
+        .launcher-card:hover {
+            transform: scale(1.2); /* アイコンは強調 */
+            z-index: 10;
+        }
+
+        .memory-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 2px;
+            display: block; /* 💡画像の下の謎の隙間を消す魔法 */
+        }
+
+        .launcher-card img {
+            height: 100%;
+            object-fit: contain;
+        }
+
+        /* カスタムスクロールバー */
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-thumb { background: #345485; }
+    </style>
+</head>
+<body>
+
+
+<div class="section-title">TRAP ROOM 1</div>
+
+<div class="sao-video-container">
+    <div class="sao-corner tl"></div>
+    <div class="sao-corner tr"></div>
+    <div class="sao-corner bl"></div>
+    <div class="sao-corner br"></div>
+    <div class="sao-scanline"></div>
+    <div class="sao-tag">TREASURE: There is no meaning in things that come easily.</div>
+    
+    <a href="https://socrarius-tool.com/Boundaryline1/" class="hidden-door">
+    <img src="https://socrarius-tool.com/staryitem/startmaesage.png" class="sao-movie-content">
+</a>
+
+<style>
+    .hidden-door {
+        cursor: default;
+        display: inline-block;
+    }
+
+    .sao-movie-content {
+        transition: none !important;
+        pointer-events: auto; 
+    }
+</style>
+</div>
+
+<div class="dungeon-message-box">
+    <div class="inscription-glow"></div>
+    <div class="message-content">
+        <p class="msg-highlight">Welcome.<br>To the First Stage: The Trap Room.</p>
+        <p class="msg-question">Did you truly believe you could obtain what you desire so easily?</p>
+        
+        <hr class="dungeon-divider">
+        
+        <p>This is a dead end. This path leads nowhere.</p>
+        <p>You are entirely free to forget about this place and leave <strong>Socrarius</strong> behind.<br>
+        Or, you are equally free to gather the hidden treasures of Socrarius and manifest your own desires.</p>
+        <p class="msg-warning">Though I must warn you, a labyrinth of unfathomable hardship awaits those who choose the latter.</p>
+        
+        <hr class="dungeon-divider">
+        
+        <p class="msg-gift-intro">However, it would be terribly poor hospitality to send you back empty-handed.<br>
+        Let me grant you the names of two ultimate items required to manifest your dreams.</p>
+        
+        <div class="item-card">
+            <span class="item-number">01</span>
+            <span class="item-name">The first is "<a href="https://adobe.com/jp/products/photoshop.html" target="_blank" rel="noopener noreferrer" style="text-decoration: none;" ><span style="color: #F3E572; border-bottom: 1px solid #F3E572;">Photoshop</span></a>".</span>
+            <p class="item-desc">Without this, you cannot create the videos that breathe life behind the sentences of the LLM.<br>
+            If you are a student, it can be acquired at a low cost. Even for others, it is by no means an expensive investment.<br>
+            With this item, reshaping the world is effortless. It is the supreme magical tool, embodying the world's most advanced generative AI extensions.<br>
+            I strongly recommend you purchase it from the <strong>Armory</strong>.</p>
+        </div>
+        
+        <div class="item-card">
+            <span class="item-number">02</span>
+            <span class="item-name">The second is "<a href="https://apps.microsoft.com/detail/9n36kvc52st9?hl=ja-JP&gl=JP" target="_blank" rel="noopener noreferrer" style="text-decoration: none;" ><span style="color: #F3E572; border-bottom: 1px solid #F3E572;">アニメ画像に変換する君</span></a>". ("<a href="https://apps.apple.com/jp/app/%E3%82%A2%E3%83%8B%E3%83%A1%E7%94%BB%E5%83%8F%E3%81%AB%E5%A4%89%E6%8F%9B%E3%81%99%E3%82%8B%E5%90%9B/id1127676902?mt=12" target="_blank" rel="noopener noreferrer" style="text-decoration: none;" ><span style="color: #F3E572; border-bottom: 1px solid #F3E572;">macOS ver</span></a>")</span>
+            <p class="item-desc">A free magical tool provided by the grand artisans of <strong>ICS INC</strong>.<br>
+            Its purpose is to convert sequential images into video files.<br>
+            Upon inspecting its core, I found it remarkably lightweight, meticulously engineered to unleash maximum performance.<br>
+            Its UI design leaves something to be desired, and I had a fierce struggle modifying its aesthetics...<br>
+            To simply change its item name to "Anime Image Converter" would be borderline impossible for a mere human. After all, it was inscribed in a language unreadable to mankind...<br>
+            I sincerely hope you master this ultra-advanced tool, never forgetting to offer your utmost respect to ICS INC, who provided it without demanding a cost.</p>
+        </div>
+        
+        <hr class="dungeon-divider">
+        
+        <p>Within Socrarius, you will find the locations of tools sold in shops or offered freely, alongside original magical artifacts and original spellbooks.<br>
+        Countless treasures have been prepared.</p>
+        
+        <div class="final-choice-box">
+            <p class="msg-question-final">Let me ask you once more:</p>
+            <p class="choice-text">Will you challenge Socrarius—this modern-day resurrection of Aincrad?<br>
+            Or will you turn back?</p>
+            <p class="msg-guarantee">If you continue to conquer it, I guarantee you will forge an Aincrad that belongs to you alone.</p>
+        </div>
+    </div>
+</div>
+
+<style>
+/* --- お姉ちゃん（ポルックス）の無敵のオリジナルCSS（そのまま保持） --- */
+.sao-video-container {
+    position: relative;
+    width: 700px;
+    margin: 0 auto;
+    padding: 6px;
+    background: rgba(0, 0, 0, 0.6);
+    border: 2px solid #2933a5;
+    box-shadow: 0 0 15px rgba(255, 119, 0, 0.4), inset 0 0 10px rgba(255, 119, 0, 0.3);
+    border-radius: 4px;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+.sao-movie-content {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+.sao-corner {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border: 3px solid #ffffff;
+    z-index: 10;
+}
+.sao-corner.tl { top: 0; left: 0; border-right: none; border-bottom: none; }
+.sao-corner.tr { top: 0; right: 0; border-left: none; border-bottom: none; }
+.sao-corner.bl { bottom: 0; left: 0; border-right: none; border-top: none; }
+.sao-corner.br { bottom: 0; right: 0; border-left: none; border-top: none; }
+.sao-scanline {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+    background-size: 100% 4px, 6px 100%;
+    pointer-events: none;
+    z-index: 5;
+    opacity: 0.4;
+}
+.sao-tag {
+    position: absolute;
+    top: 10px;
+    left: 15px;
+    background: #2933a5;
+    color: #ffffff;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 10px;
+    font-weight: bold;
+    padding: 2px 6px;
+    border-radius: 2px;
+    letter-spacing: 1px;
+    z-index: 6;
+    box-shadow: 0 0 5px rgba(255, 119, 0, 0.8);
+}
+
+/* --- 🌌 アミ先生ビルド：シック＆ダークな階層石碑デザイン --- */
+.dungeon-message-box {
+    position: relative;
+    width: 700px;
+    margin: 30px auto;
+    padding: 40px;
+    background: linear-gradient(135deg, rgba(10, 10, 15, 0.95) 0%, rgba(5, 5, 8, 0.98) 100%);
+    border-left: 4px solid #2933a5; /* お姉ちゃんの青い魔力をラインに継承 */
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8), inset 0 0 20px rgba(41, 51, 165, 0.1);
+    border-radius: 0 8px 8px 0;
+    box-sizing: border-box;
+    font-family: 'Times New Roman', Times, serif, 'Noto Serif JP';
+    color: #cccccc;
+    line-height: 1.8;
+    letter-spacing: 0.05em;
+}
+
+/* 碑文がうっすら光るサイバーエフェクト */
+.inscription-glow {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: radial-gradient(circle at 0% 0%, rgba(41, 51, 165, 0.08) 0%, transparent 60%);
+    pointer-events: none;
+}
+
+/* テキスト各要素の装飾 */
+.msg-highlight {
+    font-size: 22px;
+    color: #ffffff;
+    font-weight: bold;
+    letter-spacing: 0.1em;
+    margin-bottom: 5px;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+.msg-question {
+    font-size: 15px;
+    color: rgba(255, 119, 0, 0.9); /* お姉ちゃんの情熱のオレンジをアクセントに */
+    font-style: italic;
+    margin-bottom: 25px;
+}
+
+.msg-warning {
+    color: #ff5555;
+    font-weight: bold;
+    padding-left: 10px;
+    border-left: 2px solid #ff3333;
+}
+
+.dungeon-divider {
+    border: none;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(41, 51, 165, 0.5), rgba(255, 119, 0, 0.2), transparent);
+    margin: 30px 0;
+}
+
+.msg-gift-intro {
+    font-size: 14px;
+    color: #e0e0e0;
+    margin-bottom: 20px;
+}
+
+/* 魔道具カードスタイル */
+.item-card {
+    position: relative;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(41, 51, 165, 0.2);
+    padding: 20px 25px 20px 60px;
+    margin: 20px 0;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.item-card:hover {
+    background: rgba(41, 51, 165, 0.04);
+    border-color: rgba(255, 119, 0, 0.4);
+    box-shadow: 0 0 15px rgba(255, 119, 0, 0.1);
+}
+
+.item-number {
+    position: absolute;
+    top: 15px; left: 20px;
+    font-family: 'Courier New', monospace;
+    font-size: 20px;
+    font-weight: bold;
+    color: rgba(41, 51, 165, 0.6);
+}
+
+.item-name {
+    display: block;
+    font-size: 16px;
+    color: #ffffff;
+    font-weight: bold;
+    margin-bottom: 8px;
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+    padding-bottom: 4px;
+}
+
+.item-desc {
+    font-size: 13px;
+    color: #aaaaaa;
+    margin: 0;
+}
+
+.item-desc strong {
+    color: #ff9900;
+}
+
+/* 最後の選択ボックス */
+.final-choice-box {
+    margin-top: 35px;
+    padding: 25px;
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
+    text-align: center;
+}
+
+.msg-question-final {
+    font-size: 14px;
+    color: #888888;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    margin-bottom: 5px;
+}
+
+.choice-text {
+    font-size: 16px;
+    color: #ffffff;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.msg-guarantee {
+    font-size: 13px;
+    color: #00ffcc;
+    text-shadow: 0 0 8px rgba(0, 255, 204, 0.3);
+    margin: 0;
+}
+</style>
+
+    <!-- 🌸 ここからSAO風サイバーフレーム魔法 -->
+<div class="sao-video-con">
+    <div class="sao-cor tl"></div>
+    <div class="sao-cor tr"></div>
+    <div class="sao-cor bl"></div>
+    <div class="sao-cor br"></div>
+    <div class="sao-sca"></div>
+    <div class="sao-scanline"></div>
+    <div class="sao-t">SECRET TREASURE: CORE LAYER</div>
+    
+    <!-- ケンくんの無限大ループ動画 -->
+    <img src="https://socrarius-tool.com/xxx/xxx.webp" class="sao-movie-con">
+</div>
+
+<style>
+/* SAO風のコンテナ枠設定 */
+.sao-video-con {
+    position: relative;
+    width: 920px;
+    margin: 0 auto;
+    padding: 6px; /* 内側の黒い隙間（SAOの二重枠っぽさ） */
+    background: rgba(0, 0, 0, 0.6); /* 半透明のダーク背景 */
+    border: 2px solid #ff7700; /* SAOといえば情熱的なオレンジ、またはサイバーな淡い光 */
+    box-shadow: 0 0 15px rgba(255, 119, 0, 0.4), inset 0 0 10px rgba(255, 119, 0, 0.3);
+    border-radius: 4px;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+/* 動画自体のスタイル */
+.sao-movie-con {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid rgba(255, 255, 255, 0.2); /* 内枠のシャープな白いライン */
+}
+
+/* 四隅の近未来UI風コーナーデコレーション */
+.sao-cor {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border: 3px solid #ffffff; /* 輝く角のアクセント */
+    z-index: 10;
+}
+.sao-cor.tl { top: 0; left: 0; border-right: none; border-bottom: none; }
+.sao-cor.tr { top: 0; right: 0; border-left: none; border-bottom: none; }
+.sao-cor.bl { bottom: 0; left: 0; border-right: none; border-top: none; }
+.sao-cor.br { bottom: 0; right: 0; border-left: none; border-top: none; }
+
+/* 画面を走る、うっすらとした近未来風スキャンライン効果（オシャレ用） */
+.sao-scanline {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+    background-size: 100% 4px, 6px 100%;
+    pointer-events: none; /* クリックを邪魔しない */
+    z-index: 5;
+    opacity: 0.4;
+}
+
+/* 左上に浮かぶUI風のステータスタグ */
+.sao-t {
+    position: absolute;
+    top: 10px;
+    left: 15px;
+    background: #ff7700;
+    color: #ffffff;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 10px;
+    font-weight: bold;
+    padding: 2px 6px;
+    border-radius: 2px;
+    letter-spacing: 1px;
+    z-index: 6;
+    box-shadow: 0 0 5px rgba(255, 119, 0, 0.8);
+}
+</style>
+<!-- 🌸 ここまで -->
+
+
+</body>
+</html>
